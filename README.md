@@ -1,7 +1,7 @@
 # IPL 2025 Match Scraper & Insights
 Scrapes IPL 2025 match data (venue, scores, winner, powerplays, fours, sixes) and creates key visualizations to understand the factors that lead each team to victory.
 
-# Visualized Insights!
+# Visualized Insights:
 
 Chart 1: Proportion of Fours vs Sixes for each team (all matches)
 <img width="1440" alt="Screenshot 2025-04-12 at 7 02 11 PM" src="https://github.com/user-attachments/assets/55794697-86ef-4f5a-8252-ec9c58f211fa" />
