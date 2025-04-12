@@ -133,6 +133,8 @@ def extract_match_details(match_url):
         date_element = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="bannerDiv"]/section/div/h3/span[2]')))
         venue = venue_element.text.strip()
         match_date = date_element.text.strip()
+        match_date = format_match_date(match_date)
+
     except Exception as e:
         print(f"Error scraping venue/date: {e}")
         venue = 'N/A'
@@ -236,8 +238,8 @@ def extract_match_details(match_url):
         'Venue': venue,
         'Date': match_date,
         'Winner': winner,
-        'Team 1 Runs at 6 Overs': team1_runs_6,
-        'Team 2 Runs at 6 Overs': team2_runs_6,
+        'Team 1 Powerplay Runs': team1_runs_6,
+        'Team 2 Powerplay Runs': team2_runs_6,
         'Team 1 Fours': fours[0],
         'Team 2 Fours': fours[1],
         'Team 1 Sixes': sixes[0],
@@ -268,6 +270,7 @@ finally:
         df = pd.DataFrame(data)
         df.to_csv('ipl_2025_final.csv', index=False)
         print("Saved final data to ipl_2025_final.csv")
+        
     else:
         print("No match data found.")
     driver.quit()
