@@ -99,25 +99,27 @@ def get_fours_and_sixes_from_scorecard():
         return 0, 0
 
 skipped_matches = []
+# Choose scraping order: "latest_first" or "oldest_first"
+scrape_order = "oldest_first"  # <-- change to "latest_first" if you want the other way
+
 
 # Main scraping function
 def extract_match_details(match_url):
     driver.get(match_url)
-    wait = WebDriverWait(driver, 20)  # Increased wait
+    wait = WebDriverWait(driver, 15)
 
+    time.sleep(7)  # Increased initial load wait
+
+    # Find innings tabs
     try:
-        innings_tabs = wait.until(
-            EC.presence_of_all_elements_located((By.CLASS_NAME, 'ap-inner-tb-click'))
-        )
+        innings_tabs = driver.find_elements(By.CLASS_NAME, 'ap-inner-tb-click')
+        time.sleep(7)  # Added wait for innings tabs to stabilize
+        if len(innings_tabs) < 2:
+            print(f"Warning: Could not find both innings tabs for {match_url}!")
+            skipped_matches.append(match_url)
+            return None
     except Exception as e:
-        print(f"Error waiting for innings tabs: {e}")
-        skipped_matches.append(match_url)
-        return None
-
-    time.sleep(2)  # Slight stabilization
-
-    if len(innings_tabs) < 2:
-        print(f"Warning: Could not find both innings tabs for {match_url}!")
+        print(f"Innings tabs finding error: {e}")
         skipped_matches.append(match_url)
         return None
 
@@ -139,7 +141,7 @@ def extract_match_details(match_url):
     ## TEAM 1: first batting team powerplay
     try:
         innings_tabs[0].click()
-        time.sleep(5)
+        time.sleep(7)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         wait.until(EC.presence_of_element_located((By.ID, 'byb__comment')))
         time.sleep(2)
@@ -151,12 +153,11 @@ def extract_match_details(match_url):
     ## TEAM 2: second batting team powerplay
     try:
         driver.execute_script("window.scrollTo(0, 0);")
-        time.sleep(2)
-        innings_tabs = wait.until(
-            EC.presence_of_all_elements_located((By.CLASS_NAME, 'ap-inner-tb-click'))
-        )
+        time.sleep(1)
+        innings_tabs = driver.find_elements(By.CLASS_NAME, 'ap-inner-tb-click')
+        time.sleep(3)
         innings_tabs[1].click()
-        time.sleep(5)
+        time.sleep(7)
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         wait.until(EC.presence_of_element_located((By.ID, 'byb__comment')))
         time.sleep(2)
@@ -177,24 +178,22 @@ def extract_match_details(match_url):
         driver.execute_script("window.scrollTo(0, 0);")
         time.sleep(2)
 
-        scorecard_tab = wait.until(
+        scorecard_tab = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//a[@data-id='scoreCard']"))
         )
         driver.execute_script("arguments[0].click();", scorecard_tab)
         print("Clicked Scorecard tab successfully ✅")
         time.sleep(5)
 
-        innings_tabs = wait.until(
-            EC.presence_of_all_elements_located((By.CLASS_NAME, 'ap-inner-tb-click'))
-        )
-        time.sleep(2)
+        innings_tabs = driver.find_elements(By.CLASS_NAME, 'ap-inner-tb-click')
+        time.sleep(3)
 
         # --- Team 1 Fours and Sixes ---
         try:
             driver.execute_script("window.scrollTo(0, 0);")
-            time.sleep(2)
+            time.sleep(1)
             driver.execute_script("arguments[0].click();", innings_tabs[0])
-            time.sleep(5)
+            time.sleep(7)
             fours[0], sixes[0] = get_fours_and_sixes_from_scorecard()
         except Exception as e:
             print(f"Team 1 Fours/Sixes error: {e}")
@@ -202,12 +201,11 @@ def extract_match_details(match_url):
         # --- Team 2 Fours and Sixes ---
         try:
             driver.execute_script("window.scrollTo(0, 0);")
-            time.sleep(2)
-            innings_tabs = wait.until(
-                EC.presence_of_all_elements_located((By.CLASS_NAME, 'ap-inner-tb-click'))
-            )
+            time.sleep(1)
+            innings_tabs = driver.find_elements(By.CLASS_NAME, 'ap-inner-tb-click')
+            time.sleep(3)
             driver.execute_script("arguments[0].click();", innings_tabs[1])
-            time.sleep(5)
+            time.sleep(7)
             fours[1], sixes[1] = get_fours_and_sixes_from_scorecard()
         except Exception as e:
             print(f"Team 2 Fours/Sixes error: {e}")
@@ -215,11 +213,13 @@ def extract_match_details(match_url):
     except Exception as e:
         print(f"Scorecard section scraping error: {e}")
 
+    # Validate if match was scraped properly
     if team1_runs_6 == 'N/A' and team2_runs_6 == 'N/A' and sixes == [0, 0]:
         print(f"Skipping incomplete match: {team1} vs {team2}")
         skipped_matches.append(match_url)
         return None
 
+    # --- DEBUG PRINT ---
     print(f"\nScraping Match: {team1} vs {team2}")
     print(f"Venue: {venue}")
     print(f"Date: {match_date}")
@@ -249,8 +249,11 @@ match_links = get_match_links(base_results_url)
 data = []
 print(f"Found {len(match_links)} match links. Scraping details...\n")
 
+# Decide match link order
+match_links_to_scrape = match_links if scrape_order == "latest_first" else list(reversed(match_links))
+
 try:
-    for idx, link in enumerate(match_links):
+    for idx, link in enumerate(match_links_to_scrape):
         details = extract_match_details(link)
         if details:
             data.append(details)
