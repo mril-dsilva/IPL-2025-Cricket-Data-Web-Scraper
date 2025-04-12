@@ -22,4 +22,4 @@ The scraper saves data to ipl_2025_final.csv
 # Create Visualizations: Generate insights and plots
 Run ipl_insight_visualizations.py on python3 to visualize insights from the data!
 
-# That's it — clean & simple ✨
+# That's it. clean & simple ✨
