@@ -1,5 +1,5 @@
 # IPL 2025 Match Scraper & Insights
-Scrapes IPL 2025 match data (venue, scores, winner, powerplays, fours, sixes) and creates key visualizations to understand the factors that lead each team to victory.
+Scrapes IPL 2025 match data (venue, scores, winner, powerplays, fours, sixes) and creates key visualizations to understand the factors that lead each team to victory. See how fours, sixes, and runs in powerplay scored by IPL teams in Season 2025 relate to their wins.
 
 # Visualized Insights:
 
