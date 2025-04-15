@@ -17,7 +17,7 @@ df['Team 2 Total Boundaries'] = df['Team 2 Fours'] + df['Team 2 Sixes']
 team1_boundaries = df[['Match', 'Team 1 Fours', 'Team 1 Sixes', 'Team 1 Total Boundaries']].copy()
 team2_boundaries = df[['Match', 'Team 2 Fours', 'Team 2 Sixes', 'Team 2 Total Boundaries']].copy()
 
-# Extract team names
+# Extract team names (already abbreviated in 'Match')
 team1_boundaries['Team'] = team1_boundaries['Match'].apply(lambda x: x.split('vs')[0].strip())
 team2_boundaries['Team'] = team2_boundaries['Match'].apply(lambda x: x.split('vs')[1].strip())
 
@@ -44,49 +44,33 @@ plt.close()
 
 # --- Chart 2: Winning Factors - Average Powerplay, Fours, and Sixes ---
 
-team_name_mapping = {
-    'RCB': 'Royal Challengers Bengaluru',
-    'MI': 'Mumbai Indians',
-    'CSK': 'Chennai Super Kings',
-    'GT': 'Gujarat Titans',
-    'DC': 'Delhi Capitals',
-    'LSG': 'Lucknow Super Giants',
-    'SRH': 'Sunrisers Hyderabad',
-    'KKR': 'Kolkata Knight Riders',
-    'RR': 'Rajasthan Royals',
-    'PBKS': 'Punjab Kings'
-}
-
-# Extract winning team name
+# Extract winning team name (already abbreviated)
 df['Winning Team'] = df['Winner'].apply(lambda x: x.split('Won')[0].strip())
 
 winning_stats = []
 
 for idx, row in df.iterrows():
     try:
-        team1_short, team2_short = row['Match'].split('vs')
-        team1_short = team1_short.strip()
-        team2_short = team2_short.strip()
+        team1 = row['Match'].split('vs')[0].strip()
+        team2 = row['Match'].split('vs')[1].strip()
+        winner = row['Winning Team']
 
-        team1_full = team_name_mapping.get(team1_short, team1_short)
-        team2_full = team_name_mapping.get(team2_short, team2_short)
-
-        if row['Winning Team'] == team1_full:
+        if winner == team1:
             winning_stats.append({
-                'Team': team1_full,
-                'Powerplay Runs': row['Team 1 Runs at 6 Overs'],
+                'Team': team1,
+                'Powerplay Runs': row['Team 1 Powerplay Runs'],
                 'Fours': row['Team 1 Fours'],
                 'Sixes': row['Team 1 Sixes']
             })
-        elif row['Winning Team'] == team2_full:
+        elif winner == team2:
             winning_stats.append({
-                'Team': team2_full,
-                'Powerplay Runs': row['Team 2 Runs at 6 Overs'],
+                'Team': team2,
+                'Powerplay Runs': row['Team 2 Powerplay Runs'],
                 'Fours': row['Team 2 Fours'],
                 'Sixes': row['Team 2 Sixes']
             })
         else:
-            print(f"Warning: Could not match winner {row['Winning Team']} for {row['Match']}")
+            print(f"Warning: Could not match winner {winner} for {row['Match']}")
     except Exception as e:
         print(f"Error processing row {idx}: {e}")
 
@@ -96,7 +80,6 @@ if winning_df.empty:
     print("\n⚠️ No winning data available to plot. Please check data matching!")
 else:
     agg_winning = winning_df.groupby('Team').mean()
-
     agg_winning[['Powerplay Runs', 'Fours', 'Sixes']].plot(kind='bar', figsize=(14,7))
     plt.title('Winning Teams - Average Powerplay, Fours, and Sixes')
     plt.ylabel('Average per Match')
@@ -111,28 +94,23 @@ losing_stats = []
 
 for idx, row in df.iterrows():
     try:
-        team1, team2 = row['Match'].split('vs')
-        team1 = team1.strip()
-        team2 = team2.strip()
+        team1 = row['Match'].split('vs')[0].strip()
+        team2 = row['Match'].split('vs')[1].strip()
+        winner = row['Winning Team']
 
-        team1_full = team_name_mapping.get(team1, team1)
-        team2_full = team_name_mapping.get(team2, team2)
-        winner = row['Winner'].split('Won')[0].strip()
-
-        if winner == team1_full:
-            losing_stats.append({'Team': team2_full, 'Sixes in Loss': row['Team 2 Sixes']})
-        elif winner == team2_full:
-            losing_stats.append({'Team': team1_full, 'Sixes in Loss': row['Team 1 Sixes']})
+        if winner == team1:
+            losing_stats.append({'Team': team2, 'Sixes in Loss': row['Team 2 Sixes']})
+        elif winner == team2:
+            losing_stats.append({'Team': team1, 'Sixes in Loss': row['Team 1 Sixes']})
     except Exception as e:
         print(f"Error processing row {idx} for losses: {e}")
 
 losing_df = pd.DataFrame(losing_stats)
 
 if losing_df.empty:
-    print("\n⚠️ No losing data available to plot.")
+    print("\n No losing data available to plot.")
 else:
     agg_losing = losing_df.groupby('Team').mean()
-
     agg_losing['Sixes in Loss'].sort_values(ascending=False).plot(kind='bar', figsize=(14,7))
     plt.title('Average Sixes by Teams When They Lose')
     plt.ylabel('Average Sixes in Defeat')
@@ -147,26 +125,22 @@ boundary_diff = []
 
 for idx, row in df.iterrows():
     try:
-        team1, team2 = row['Match'].split('vs')
-        team1 = team1.strip()
-        team2 = team2.strip()
-
-        team1_full = team_name_mapping.get(team1, team1)
-        team2_full = team_name_mapping.get(team2, team2)
-        winner = row['Winner'].split('Won')[0].strip()
+        team1 = row['Match'].split('vs')[0].strip()
+        team2 = row['Match'].split('vs')[1].strip()
+        winner = row['Winning Team']
 
         team1_boundaries = row['Team 1 Fours'] + row['Team 1 Sixes']
         team2_boundaries = row['Team 2 Fours'] + row['Team 2 Sixes']
 
-        if winner == team1_full:
+        if winner == team1:
             boundary_diff.append(team1_boundaries - team2_boundaries)
-        elif winner == team2_full:
+        elif winner == team2:
             boundary_diff.append(team2_boundaries - team1_boundaries)
     except Exception as e:
         print(f"Error processing row {idx} for boundary diff: {e}")
 
 if not boundary_diff:
-    print("\n⚠️ No boundary difference data to plot.")
+    print("\n No boundary difference data to plot.")
 else:
     plt.figure(figsize=(10,6))
     plt.hist(boundary_diff, bins=10, edgecolor='black')
