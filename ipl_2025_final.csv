@@ -1,28 +1,31 @@
-Match,Venue,Date,Winner,Team 1 Runs at 6 Overs,Team 2 Runs at 6 Overs,Team 1 Fours,Team 2 Fours,Team 1 Sixes,Team 2 Sixes
-KKR vs RCB,"Eden Gardens, Kolkata",22 MAR 2025,Royal Challengers Bengaluru Won by 7  Wickets,60,80,18,21,8,7
-SRH vs RR,"Rajiv Gandhi International Stadium, Hyderabad",23 MAR 2025,Sunrisers Hyderabad Won by 44  Runs,94,77,34,17,12,18
-MI vs CSK,"MA Chidambaram Stadium, Chennai",23 MAR 2025,Chennai Super Kings Won by 4  Wickets,52,62,13,9,5,8
-LSG vs DC,"Dr YS Rajasekhara Reddy ACA-VDCA Cricket Stadium, Visakhapatnam",24 MAR 2025,Delhi Capitals Won by 1  Wicket,64,58,15,19,16,13
-PBKS vs GT,"Narendra Modi Stadium, Ahmedabad",25 MAR 2025,Punjab Kings Won by 11  Runs,73,61,22,15,16,16
-RR vs KKR,"ACA Stadium, Guwahati",26 MAR 2025,Kolkata Knight Riders Won by 8  Wickets,54,40,11,11,7,7
-SRH vs LSG,"Rajiv Gandhi International Stadium, Hyderabad",27 MAR 2025,Lucknow Super Giants Won by 5  Wickets,62,77,10,18,12,11
-RCB vs CSK,"MA Chidambaram Stadium, Chennai",28 MAR 2025,Royal Challengers Bengaluru Won by 50  Runs,56,30,15,15,12,4
-GT vs MI,"Narendra Modi Stadium, Ahmedabad",29 MAR 2025,Gujarat Titans Won by 36  Runs,66,48,13,12,9,7
-SRH vs DC,"Dr YS Rajasekhara Reddy ACA-VDCA Cricket Stadium, Visakhapatnam",30 MAR 2025,Delhi Capitals Won by 7  Wickets,58,52,12,14,8,8
-RR vs CSK,"ACA Stadium, Guwahati",30 MAR 2025,Rajasthan Royals Won by 6  Runs,79,42,15,14,9,8
-KKR vs MI,"Wankhede Stadium, Mumbai",31 MAR 2025,Mumbai Indians Won by 8  Wickets,41,55,9,7,6,9
-LSG vs PBKS,"Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",01 APR 2025,Punjab Kings Won by 8  Wickets,39,62,15,16,8,11
-RCB vs GT,"M Chinnaswamy Stadium, Bengaluru",02 APR 2025,Gujarat Titans Won by 8  Wickets,38,42,15,14,9,11
-KKR vs SRH,"Eden Gardens, Kolkata",03 APR 2025,Kolkata Knight Riders Won by 80  Runs,53,33,17,9,11,5
-LSG vs MI,"Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",04 APR 2025,Lucknow Super Giants Won by 12  Runs,69,64,21,19,8,5
-DC vs CSK,"MA Chidambaram Stadium, Chennai",05 APR 2025,Delhi Capitals Won by 25  Runs,51,46,15,9,7,3
-RR vs PBKS,"New PCA Stadium, New Chandigarh",05 APR 2025,Rajasthan Royals Won by 50  Runs,53,43,17,12,10,4
-SRH vs GT,"Rajiv Gandhi International Stadium, Hyderabad",06 APR 2025,Gujarat Titans Won by 7  Wickets,45,48,19,20,2,3
-RCB vs MI,"Wankhede Stadium, Mumbai",07 APR 2025,Royal Challengers Bengaluru Won by 12  Runs,73,54,18,21,13,12
-LSG vs KKR,"Eden Gardens, Kolkata",08 APR 2025,Lucknow Super Giants Won by 4  Runs,59,90,18,27,15,10
-PBKS vs CSK,"New PCA Stadium, New Chandigarh",08 APR 2025,Punjab Kings Won by 18  Runs,75,59,11,16,16,8
-GT vs RR,"Narendra Modi Stadium, Ahmedabad",09 APR 2025,Gujarat Titans Won by 58  Runs,56,57,20,11,9,8
-RCB vs DC,"M Chinnaswamy Stadium, Bengaluru",10 APR 2025,Delhi Capitals Won by 6  Wickets,64,39,9,15,10,7
-CSK vs KKR,"MA Chidambaram Stadium, Chennai",11 APR 2025,Kolkata Knight Riders Won by 8  Wickets,31,71,8,4,1,10
-GT vs LSG,"Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",12 APR 2025,Lucknow Super Giants Won by 6  Wickets,54,61,18,16,3,9
-PBKS vs SRH,"Rajiv Gandhi International Stadium, Hyderabad",12 APR 2025,Sunrisers Hyderabad Won by 8  Wickets,89,83,18,26,16,14
+Match,Venue,Date,Winner,Team 1 Final Score,Team 2 Final Score,Team 1 Powerplay Runs,Team 2 Powerplay Runs,Team 1 Fours,Team 2 Fours,Team 1 Sixes,Team 2 Sixes
+KKR vs RCB,"Eden Gardens, Kolkata",2025-03-22,RCB Won by 7  Wickets,174/8,177/3,60,80,18,21,8,7
+SRH vs RR,"Rajiv Gandhi International Stadium, Hyderabad",2025-03-23,SRH Won by 44  Runs,286/6,242/6,94,77,34,17,12,18
+MI vs CSK,"MA Chidambaram Stadium, Chennai",2025-03-23,CSK Won by 4  Wickets,158/6,155/9,52,62,13,9,5,8
+LSG vs DC,"Dr YS Rajasekhara Reddy ACA-VDCA Cricket Stadium, Visakhapatnam",2025-03-24,DC Won by 1  Wicket,211/9,209/8,64,58,15,19,16,13
+PBKS vs GT,"Narendra Modi Stadium, Ahmedabad",2025-03-25,PBKS Won by 11  Runs,232/5,243/5,73,61,22,15,16,16
+RR vs KKR,"ACA Stadium, Guwahati",2025-03-26,KKR Won by 8  Wickets,151/9,153/2,54,40,11,11,7,7
+SRH vs LSG,"Rajiv Gandhi International Stadium, Hyderabad",2025-03-27,LSG Won by 5  Wickets,190/9,193/5,62,77,10,18,12,11
+RCB vs CSK,"MA Chidambaram Stadium, Chennai",2025-03-28,RCB Won by 50  Runs,146/8,196/7,56,30,15,15,12,4
+GT vs MI,"Narendra Modi Stadium, Ahmedabad",2025-03-29,GT Won by 36  Runs,196/8,160/6,66,48,13,12,9,7
+SRH vs DC,"Dr YS Rajasekhara Reddy ACA-VDCA Cricket Stadium, Visakhapatnam",2025-03-30,DC Won by 7  Wickets,166/3,163,58,52,12,14,8,8
+RR vs CSK,"ACA Stadium, Guwahati",2025-03-30,RR Won by 6  Runs,182/9,176/6,79,42,15,14,9,8
+KKR vs MI,"Wankhede Stadium, Mumbai",2025-03-31,MI Won by 8  Wickets,121/2,116,41,55,9,7,6,9
+LSG vs PBKS,"Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",2025-04-01,PBKS Won by 8  Wickets,171/7,177/2,39,62,15,16,8,11
+RCB vs GT,"M Chinnaswamy Stadium, Bengaluru",2025-04-02,GT Won by 8  Wickets,169/8,170/2,38,42,15,14,9,11
+KKR vs SRH,"Eden Gardens, Kolkata",2025-04-03,KKR Won by 80  Runs,200/6,120,53,33,17,9,11,5
+LSG vs MI,"Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",2025-04-04,LSG Won by 12  Runs,203/8,191/5,69,64,21,19,8,5
+DC vs CSK,"MA Chidambaram Stadium, Chennai",2025-04-05,DC Won by 25  Runs,158/5,183/6,51,46,15,9,7,3
+RR vs PBKS,"New PCA Stadium, New Chandigarh",2025-04-05,RR Won by 50  Runs,155/9,205/4,53,43,17,12,10,4
+SRH vs GT,"Rajiv Gandhi International Stadium, Hyderabad",2025-04-06,GT Won by 7  Wickets,152/8,153/3,45,48,19,20,2,3
+RCB vs MI,"Wankhede Stadium, Mumbai",2025-04-07,RCB Won by 12  Runs,209/9,221/5,73,54,18,21,13,12
+LSG vs KKR,"Eden Gardens, Kolkata",2025-04-08,LSG Won by 4  Runs,234/7,238/3,59,90,18,27,15,10
+PBKS vs CSK,"New PCA Stadium, New Chandigarh",2025-04-08,PBKS Won by 18  Runs,219/6,201/5,75,59,11,16,16,8
+GT vs RR,"Narendra Modi Stadium, Ahmedabad",2025-04-09,GT Won by 58  Runs,217/6,159,56,57,20,11,9,8
+RCB vs DC,"M Chinnaswamy Stadium, Bengaluru",2025-04-10,DC Won by 6  Wickets,163/7,169/4,64,39,9,15,10,7
+CSK vs KKR,"MA Chidambaram Stadium, Chennai",2025-04-11,KKR Won by 8  Wickets,103/9,107/2,31,71,8,4,1,10
+GT vs LSG,"Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",2025-04-12,LSG Won by 6  Wickets,186/4,180/6,54,61,18,16,3,9
+PBKS vs SRH,"Rajiv Gandhi International Stadium, Hyderabad",2025-04-12,SRH Won by 8  Wickets,247/2,245/6,89,83,18,26,16,14
+RR vs RCB,"Sawai Mansingh Stadium, Jaipur",2025-04-13,RCB Won by 9  Wickets,173/4,175/1,45,65,18,14,5,9
+MI vs DC,"Arun Jaitley Stadium, Delhi",2025-04-13,MI Won by 12  Runs,193,205/5,59,72,21,21,10,7
+LSG vs CSK,"Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow",2025-04-14,CSK Won by 5  Wickets,166/7,168/5,42,59,11,20,10,3

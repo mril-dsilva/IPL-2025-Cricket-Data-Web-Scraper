@@ -140,6 +140,19 @@ def extract_match_details(match_url):
         venue = 'N/A'
         match_date = 'N/A'
 
+    ## Scrape Team 1 and Team 2 Final Runs
+    try:
+        team1_score_element = driver.find_element(By.XPATH, '//*[@id="bannerDiv"]/section/div/div[1]/div[1]/div[2]/div')
+        team2_score_element = driver.find_element(By.XPATH, '//*[@id="bannerDiv"]/section/div/div[1]/div[3]/div[1]/div')
+
+        team1_final_score = team1_score_element.text.strip()
+        team2_final_score = team2_score_element.text.strip()
+    except Exception as e:
+        print(f"Error scraping team final scores: {e}")
+        team1_final_score = 'N/A'
+        team2_final_score = 'N/A'
+
+
     ## TEAM 1: first batting team powerplay
     try:
         innings_tabs[0].click()
@@ -172,6 +185,26 @@ def extract_match_details(match_url):
     soup = BeautifulSoup(driver.page_source, 'html.parser')
     winner_div = soup.find('div', class_='ms-matchComments')
     winner = winner_div.text.strip() if winner_div else 'N/A'
+
+    # Team abbreviation mapping
+    team_name_to_abbreviation = {
+        'Royal Challengers Bengaluru': 'RCB',
+        'Mumbai Indians': 'MI',
+        'Chennai Super Kings': 'CSK',
+        'Gujarat Titans': 'GT',
+        'Delhi Capitals': 'DC',
+        'Lucknow Super Giants': 'LSG',
+        'Sunrisers Hyderabad': 'SRH',
+        'Kolkata Knight Riders': 'KKR',
+        'Rajasthan Royals': 'RR',
+        'Punjab Kings': 'PBKS'
+    }
+
+    # Try to shorten the winner name if possible
+    for full_name, abbrev in team_name_to_abbreviation.items():
+        if full_name in winner:
+            winner = winner.replace(full_name, abbrev)
+            break
 
     ## SIXES and FOURS
     sixes = [0, 0]
@@ -238,6 +271,8 @@ def extract_match_details(match_url):
         'Venue': venue,
         'Date': match_date,
         'Winner': winner,
+        'Team 1 Final Score': team1_final_score,
+        'Team 2 Final Score': team2_final_score,
         'Team 1 Powerplay Runs': team1_runs_6,
         'Team 2 Powerplay Runs': team2_runs_6,
         'Team 1 Fours': fours[0],
